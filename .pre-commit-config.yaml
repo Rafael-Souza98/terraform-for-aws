@@ -4,4 +4,5 @@ repos:
     hooks:
     - id: terraform_fmt
       args:
-        - --args=- recursive
+        - --args=-recursive
+    - id: terraform_validate
