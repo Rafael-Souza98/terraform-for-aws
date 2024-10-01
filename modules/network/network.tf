@@ -12,19 +12,14 @@ module "vpc" {
     create_redshift_subnet_group = false
     database_subnet_enable_dns64 = false
     
-    
-    tags = {
-        Terraform = "true"
-        Environment = "dev"
-    }
-    
 }
 
 resource "aws_subnet" "public-subnet-1a" {
     vpc_id     = module.vpc.vpc_id
     cidr_block = cidrsubnet(var.cidr_vpc, 6, 1)
     availability_zone = "${data.aws_region.current.name}a"
-
+    map_public_ip_on_launch = true
+    
     tags = {
         Name = "${var.project_name}-pub-subnet-1a"
         "kubernetes.io/role/elb" = 1
@@ -34,7 +29,8 @@ resource "aws_subnet" "public-subnet-1b" {
     vpc_id     = module.vpc.vpc_id
     cidr_block = cidrsubnet(var.cidr_vpc, 6, 2)
     availability_zone = "${data.aws_region.current.name}b"
-
+    map_public_ip_on_launch = true
+    
     tags = {
         Name = "${var.project_name}-pub-subnet-1b"
         "kubernetes.io/role/elb" = 1
@@ -45,7 +41,6 @@ resource "aws_subnet" "private-subnet-1a" {
     vpc_id     = module.vpc.vpc_id
     cidr_block = cidrsubnet(var.cidr_vpc, 6, 3)
     availability_zone = "${data.aws_region.current.name}a"
-
     tags = {
         Name = "${var.project_name}-priv-subnet-1a"
         "kubernetes.io/role/internal-elb" = 1
@@ -56,7 +51,6 @@ resource "aws_subnet" "private-subnet-1b" {
     vpc_id     = module.vpc.vpc_id
     cidr_block = cidrsubnet(var.cidr_vpc, 6, 4)
     availability_zone = "${data.aws_region.current.name}b"
-    
 
     tags = {
         Name = "${var.project_name}-priv-subnet-1b"
@@ -83,8 +77,8 @@ resource "aws_route_table" "eks-pub-rtb" {
 resource "aws_route_table" "eks-priv-rtb" {
     vpc_id = module.vpc.vpc_id
     route {
-        cidr_block = "0.0.0.0/0"
-        gateway_id = aws_internet_gateway.eks-igw.id
+        cidr_block = var.cidr_vpc
+        gateway_id = "local"
     }
     tags = {
         Name =  "${var.project_name}-priv-rtb"
