@@ -19,3 +19,8 @@ module "manage_node_group" {
     instance_types = var.instance_types
     subnet_ids = [ module.network.priv-subnet-1a, module.network.priv-subnet-1b ]
 }
+
+module "eks-lb-controller" {
+    source = "./modules/aws-load-balancer-controller"
+    project_name = var.project_name
+}

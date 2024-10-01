@@ -13,3 +13,5 @@ variable "instance_types" {
     type = list(string)
     description = "Instance types EC2 of EKS"
 }
+
+
