@@ -15,3 +15,8 @@ variable "instance_types" {
 }
 
 
+variable "teste" {
+  type        = list(string)
+  description = "teste"
+}
+
