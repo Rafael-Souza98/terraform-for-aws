@@ -14,9 +14,3 @@ variable "instance_types" {
   description = "Instance types EC2 of EKS"
 }
 
-
-variable "teste" {
-  type        = list(string)
-  description = "teste"
-}
-
