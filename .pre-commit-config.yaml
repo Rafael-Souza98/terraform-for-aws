@@ -6,3 +6,8 @@ repos:
       args:
         - --args=-recursive
     - id: terraform_validate
+
+    - id: terraform_docs
+      args:
+      - --hook-config=--output-file=README.md        # Valid UNIX path. I.e. ../TFDOC.md or docs/README.md etc.
+      
