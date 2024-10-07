@@ -13,3 +13,7 @@ output "priv-subnet-1a" {
 output "priv-subnet-1b" {
   value = aws_subnet.private-subnet-1b.id
 }
+
+output "vpc_id" {
+  value = module.vpc.vpc_id
+}
