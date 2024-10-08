@@ -1,4 +1,9 @@
-
+provider "aws" {
+  region = var.region
+  default_tags {
+    tags = var.tags
+  }
+}
 
 provider "kubernetes" {
   host                   = module.cluster_eks.endpoint

@@ -11,7 +11,7 @@ variable "cidr_vpc" {
 
 variable "map_public_ip_subnet_priv" {
   type        = bool
-  description = "IP publico na subnet privada"
+  description = "Mapeia IP publico na subnet privada caso não queira utilizar NAT para fins de teste e redução de custo"
   default     = false
 }
 

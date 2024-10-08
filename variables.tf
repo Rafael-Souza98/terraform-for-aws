@@ -14,3 +14,15 @@ variable "instance_types" {
   description = "Instance types EC2 of EKS"
 }
 
+variable "region" {
+  type        = string
+  description = "AWS region to create the resources"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags that has been add of all resources"
+  default = {
+    "" = ""
+  }
+}
