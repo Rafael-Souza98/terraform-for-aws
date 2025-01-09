@@ -8,8 +8,7 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-        - "**"
+
 permissions:
   contents: read
 
@@ -23,7 +22,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./terraform
+        
 
     steps:
     - name: Checkout
