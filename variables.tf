@@ -12,6 +12,7 @@ variable "cidr_vpc" {
 variable "instance_types" {
   type        = list(string)
   description = "Instance types EC2 of EKS"
+  default     = ["t3.medium"]
 }
 
 variable "region" {
@@ -25,4 +26,9 @@ variable "tags" {
   default = {
     "" = ""
   }
+}
+
+variable "eks_version" {
+  type        = string
+  description = "Version of EKS Cluster"
 }

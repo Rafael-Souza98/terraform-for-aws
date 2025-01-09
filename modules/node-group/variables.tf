@@ -8,6 +8,7 @@ variable "subnet_ids" {
 variable "instance_types" {
   type        = list(string)
   description = "Instance types EC2 of EKS"
+  default     = ["t3.medium"]
 }
 
 variable "cluster_name" {

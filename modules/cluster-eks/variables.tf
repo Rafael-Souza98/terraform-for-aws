@@ -29,3 +29,8 @@ variable "create" {
   description = "Select if the resource has been created"
   default     = true
 }
+
+variable "eks_version" {
+  type        = string
+  description = "Version of EKS Cluster"
+}

@@ -4,6 +4,7 @@ module "cluster_eks" {
   subnet_pub_1a  = module.network.pub-subnet-1a
   subnet_pub_1b  = module.network.pub-subnet-1b
   instance_types = var.instance_types
+  eks_version    = var.eks_version
 }
 
 module "network" {

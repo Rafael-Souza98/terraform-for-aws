@@ -1,0 +1,7 @@
+project_name   = "projeto_eks"
+instance_types = ["t3.medium"]
+region         = "us-east-2"
+eks_version = "1.29"
+tags = {
+  "Env" = "dev"
+}

@@ -3,7 +3,7 @@ module "vpc" {
 
   name                                = var.project_name
   cidr                                = var.cidr_vpc
-  enable_nat_gateway                  = false
+  enable_nat_gateway                  = var.map_public_ip_subnet_priv == true ? false : true
   enable_vpn_gateway                  = false
   create_database_subnet_group        = false
   create_elasticache_subnet_group     = false
@@ -12,6 +12,7 @@ module "vpc" {
   database_subnet_enable_dns64        = false
 
 }
+
 
 resource "aws_subnet" "public-subnet-1a" {
   vpc_id                  = module.vpc.vpc_id
@@ -78,8 +79,8 @@ resource "aws_route_table" "eks-pub-rtb" {
 resource "aws_route_table" "eks-priv-rtb" {
   vpc_id = module.vpc.vpc_id
   route {
-    cidr_block = var.cidr_vpc
-    gateway_id = "local"
+    cidr_block = var.map_public_ip_subnet_priv == true ? var.cidr_vpc : module.vpc.natgw_ids[0]
+    gateway_id = var.map_public_ip_subnet_priv == true ? "local" : "0.0.0.0/0"
   }
   tags = {
     Name = "${var.project_name}-priv-rtb"
