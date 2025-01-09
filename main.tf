@@ -22,7 +22,7 @@ module "manage_node_group" {
 }
 
 module "eks-lb-controller" {
-  source       = "./modules/aws-load-balancer-controller"
+  source       = "./modules/addons"
   project_name = var.project_name
   oidc         = module.cluster_eks.oidc
   cluster_name = module.cluster_eks.cluster_name
