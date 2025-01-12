@@ -31,8 +31,9 @@ jobs:
       uses: actions/checkout@v4
     
     - name: Configure aws credentials
-      uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
+      uses: aws-actions/configure-aws-credentials@v4
       with:
+        role-skip-session-tagging: true
         role-to-assume: ${{ secrets.ROLE_OIDC }}
         role-session-name:  "GitHubActions-${{ github.run_id }}-${{ github.job }}"
         aws-region: ${{ env.AWS_REGION }}
