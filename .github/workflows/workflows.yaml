@@ -13,7 +13,6 @@ permissions:
   id-token: write
   contents: read
 
-
 env:
   TERRAFORM_VERSION: 1.10.3
   AWS_REGION: us-east-2
@@ -31,11 +30,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     
-    - name: configure aws credentials
+    - name: Configure aws credentials
       uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
       with:
         role-to-assume: ${{ secrets.ROLE_OIDC }}
-        role-session-name: ${{ secrets.ROLE_SESSION_NAME }}
+        role-session-name:  "GitHubActions-${{ github.run_id }}-${{ github.job }}"
         aws-region: ${{ env.AWS_REGION }}
 
     - name: Install Terraform
