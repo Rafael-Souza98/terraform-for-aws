@@ -34,7 +34,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v4
       with:
         role-skip-session-tagging: true
-        role-to-assume: ${{ secrets.ROLE_OIDC }}
+        role-to-assume: "arn:aws:iam::826972386494:role/rafael-role-oidc"
         role-session-name:  "GitHubActions-${{ github.run_id }}-${{ github.job }}"
         aws-region: ${{ env.AWS_REGION }}
 

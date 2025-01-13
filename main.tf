@@ -21,10 +21,23 @@ module "manage_node_group" {
   subnet_ids     = [module.network.priv-subnet-1a, module.network.priv-subnet-1b]
 }
 
-module "eks-lb-controller" {
+module "addons" {
   source       = "./modules/addons"
   project_name = var.project_name
   oidc         = module.cluster_eks.oidc
   cluster_name = module.cluster_eks.cluster_name
   vpc_id       = module.network.vpc_id
+}
+
+
+module "github-oidc" {
+  source  = "terraform-module/github-oidc-provider/aws"
+  version = "~> 1"
+
+  create_oidc_provider      = false
+  create_oidc_role          = true
+  role_name                 = "rafael-role-oidc"
+  oidc_provider_arn         = "arn:aws:iam::826972386494:oidc-provider/token.actions.githubusercontent.com"
+  repositories              = ["Rafael-Souza98/terraform-for-aws"]
+  oidc_role_attach_policies = ["arn:aws:iam::aws:policy/AdministratorAccess"]
 }
