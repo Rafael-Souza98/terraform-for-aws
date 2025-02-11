@@ -11,3 +11,8 @@ output "oidc" {
   value       = module.cluster_eks.oidc
   description = "OIDC do cluster"
 }
+
+output "cluster_name" {
+  value       = module.cluster_eks.cluster_name
+  description = "Nome do cluster EKS"
+}
