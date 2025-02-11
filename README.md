@@ -71,7 +71,7 @@ No resources.
 
 | Name | Type |
 |------|------|
-| [aws_iam_role.oidc_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_role) | data source |
+| [aws_iam_roles.oidc_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_roles) | data source |
 
 ## Inputs
 

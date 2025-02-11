@@ -35,7 +35,7 @@ module "github-oidc" {
   version = "~> 1"
 
   create_oidc_provider      = var.create_oidc_provider
-  create_oidc_role          = data.aws_iam_role.oidc_role.arn != null ? false : true
+  create_oidc_role          = try(data.aws_iam_roles.oidc_role.id, null) == null ? true : false
   role_name                 = var.role_oidc_name
   oidc_provider_arn         = "arn:aws:iam::826972386494:oidc-provider/token.actions.githubusercontent.com"
   repositories              = ["Rafael-Souza98/terraform-for-aws"]

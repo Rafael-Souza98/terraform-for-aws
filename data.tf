@@ -1,3 +1,3 @@
-data "aws_iam_role" "oidc_role" {
-  name = var.role_oidc_name
+data "aws_iam_roles" "oidc_role" {
+  name_regex = ".*rafael-oidc-role.*"
 }
