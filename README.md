@@ -88,5 +88,9 @@ No resources.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_cluster_certificate_authority"></a> [cluster\_certificate\_authority](#output\_cluster\_certificate\_authority) | Certificado do cluster EKS |
+| <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | Endpoint do cluster EKS |
+| <a name="output_oidc"></a> [oidc](#output\_oidc) | OIDC do cluster |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
