@@ -32,3 +32,16 @@ variable "eks_version" {
   type        = string
   description = "Version of EKS Cluster"
 }
+
+variable "create_oidc_provider" {
+  type        = bool
+  description = "Create OIDC Provider"
+  default     = false
+}
+
+
+variable "role_oidc_name" {
+  type        = string
+  description = "Create OIDC Role"
+  default     = "rafael-role-oidc"
+}
