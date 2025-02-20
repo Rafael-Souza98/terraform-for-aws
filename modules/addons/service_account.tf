@@ -1,4 +1,4 @@
-resource "kubernetes_service_account" "example" {
+resource "kubernetes_service_account" "serviceAccount-loadbalancer-controller" {
   metadata {
     name      = "aws-load-balancer-controller"
     namespace = "kube-system"
@@ -9,8 +9,14 @@ resource "kubernetes_service_account" "example" {
 
 }
 
-resource "kubernetes_secret" "example" {
+
+resource "kubernetes_service_account" "serviceAccount-aws-vpc-cni" {
   metadata {
-    name = "terraform-example"
+    name      = "aws-node"
+    namespace = "kube-system"
+    annotations = {
+      "eks.amazonaws.com/role-arn" = aws_iam_role.aws_vpc_cni_role.arn
+    }
   }
+
 }

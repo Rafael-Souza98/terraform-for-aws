@@ -18,7 +18,7 @@ resource "helm_release" "eks_helm_controller" {
 
   set {
     name  = "serviceAccount.name"
-    value = "aws-load-balancer-controller "
+    value = "aws-load-balancer-controller"
 
   }
 
@@ -33,6 +33,20 @@ resource "helm_release" "eks_helm_controller" {
 
   }
 }
+
+resource "helm_release" "aws-vpc-cni" {
+  name       = "aws-vpc-cni"
+  repository = "https://aws.github.io/eks-charts"
+  chart      = "aws-vpc-cni"
+  namespace  = "kube-system"
+  set {
+    name  = "serviceAccount.create"
+    value = "false"
+  }
+}
+
+
+
 
 
 resource "helm_release" "sealed_secrets" {

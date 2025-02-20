@@ -1,0 +1,19 @@
+
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  TERRAFORM_VERSION: 1.10
+
+Install Terraform:
+  stage: build
+  image: hashicorp/terraform:$TERRAFORM_VERSION
+  script:
+    - terraform init
+    - terraform validate
+    - terraform fmt -recursive
+    - terraform plan -var-file=terraform.tfvars.example -out=tfplan
+
+
